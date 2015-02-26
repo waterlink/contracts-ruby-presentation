@@ -5,7 +5,6 @@
 ## Design by Contract
 
 
-
 Answers following questions:
 
 - What does it expect?
@@ -13,34 +12,39 @@ Answers following questions:
 - What does it maintain?
 
 
-
 ### Benefits
 
 
-
-- Its clients can be confident while using its public interfaces
-- It itself can be confident in its operations
-
+- Clients can be confident using its public APIs
+- Service itself can be confident in its own operations
 
 
 ### Classical defensive programming
 
 
+```ruby
+def add(a, b)
+  a + b
+end
+```
+
 
 ```ruby
 def add(a, b)
-  raise "a should be Fixnum or Float" unless a.is_a?(Fixnum) || a.is_a?(Float)
-  raise "b should be Fixnum or Float" unless b.is_a?(Fixnum) || b.is_a?(Float)
+  raise "a should be Fixnum or Float" unless a.is_a?(Fixnum) ||
+    a.is_a?(Float)
+  raise "b should be Fixnum or Float" unless b.is_a?(Fixnum) ||
+    b.is_a?(Float)
   result = a + b
-  raise "result should be Fixnum or Float" unless result.is_a?(Fixnum) || result.is_a?(Float)
+  raise "result should be Fixnum or Float" unless result.is_a?(Fixnum) ||
+    result.is_a?(Float)
   result
 end
 ```
 
 
 
-### `gem "contracts"`
-
+## `gem "contracts"`
 
 
 ```ruby
@@ -51,9 +55,7 @@ end
 ```
 
 
-
 ### `assert` on steroids. And it is not only about types
-
 
 
 ```ruby
@@ -70,9 +72,7 @@ end
 ```
 
 
-
 ### Very useful contract violation error messages
-
 
 
 ```
@@ -86,9 +86,7 @@ ContractError: Contract violation for argument 1 of 1:
 ```
 
 
-
 ### Pattern matching, sorta..
-
 
 
 ```ruby
@@ -104,9 +102,7 @@ end
 ```
 
 
-
 #### Something useful
-
 
 
 ```ruby
@@ -128,38 +124,41 @@ end
 ## Limitless benefits
 
 
-
-- Guarantees consistency of input from outside
-- Guarantees consistency of data flowing inside of your system
-- Guarantees consistency of any state of your system (if you have any) (through `Contracts::Invariant`)
-- Guarantees consistency of results given to clients
-- Nail down logical errors right where they happen, not somewhere in different part of huge codebase
-- (or even worse..)
-
+- Consistency of input
+- Consistency of data flows inside the system
+- Consistency of state of the system
+- Consistency of output
+- Blow up loudly on any logical error in the system
 
 
 ### Caveats
 
 
-
 - Performance?
-
 
 
 ### Performance
 
 
+|Benchmark|Slowdown|
+|:---:|:-----------:|
+|`a+b`|900% slowdown|
+|production system with network IO|5-10% slowdown|
+|`NO_CONTRACTS=1`|0% slowdown|
 
-- `a + b` benchmark shows 900% performance decrease
-- some real work with redis access over network shows only 5-10% performace decrease
-- NO_CONTRACTS=1 in production. And you have 0% performance decrease
-- (but you don't have any runtime guarantees either (hope your test suite and staging env is good enough))
+*No loud blowing up with `NO_CONTRACTS=1` in production*
 
 
 
-## Thanks
+## Links
 
 - Github: github.com/egonSchiele/contracts.ruby
 - Nice tutorial: egonschiele.github.io/contracts.ruby
 - Creator: github.com/egonSchiele
 - Me, co-maintainer: github.com/waterlink
+
+
+
+# Thanks
+
+Q & A
