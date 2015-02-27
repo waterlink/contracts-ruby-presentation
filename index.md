@@ -1,5 +1,7 @@
 # Design by Contract in Ruby
 
+by Alexey Fedorov
+
 
 
 ## Design by Contract
