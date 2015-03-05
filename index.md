@@ -4,23 +4,6 @@ by Alexey Fedorov
 
 
 
-## Design by Contract
-
-
-Answers following questions:
-
-- What does it expect?
-- What does it guarantee?
-- What does it maintain?
-
-
-### Benefits
-
-
-- Clients can be confident using its public APIs
-- Service itself can be confident in its own operations
-
-
 ### Classical defensive programming
 
 
@@ -45,8 +28,7 @@ end
 ```
 
 
-
-## `gem "contracts"`
+### `gem "contracts"`
 
 
 ```ruby
@@ -55,6 +37,25 @@ def add(a, b)
   a + b
 end
 ```
+
+
+
+## Design by Contract
+
+
+Answers following questions:
+
+- What does it expect?
+- What does it guarantee?
+- What does it maintain?
+
+
+### Benefits
+
+
+- Clients can be confident using its public APIs
+- Service itself can be confident in its own operations
+
 
 
 ### `assert` on steroids. And it is not only about types
